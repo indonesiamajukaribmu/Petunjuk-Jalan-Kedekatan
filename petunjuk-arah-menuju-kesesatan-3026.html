@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Satir fiksi: petunjuk arah menuju Kesesatan, edisi tahun 3026 — 1000 tahun lagi. Lelucon navigasi GPS futuristik.">
+<title>Petunjuk Arah Menuju Kesesatan — Tahun 3026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#04070f; --panel:rgba(10,18,34,.72); --line:rgba(0,240,255,.22);
+  --cyan:#00f0ff; --mag:#ff2d78; --amber:#ffb020; --green:#2bff9e;
+  --text:#e9f4ff; --dim:#8496b8;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',system-ui,'Segoe UI',sans-serif;min-height:100vh;overflow-x:hidden;transition:background .6s,color .6s}
+/* ==== FX latar ==== */
+.grid-bg{position:fixed;inset:-2px;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(0,240,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(0,240,255,.07) 1px,transparent 1px);
+  background-size:44px 44px;animation:gridmove 3s linear infinite;
+  -webkit-mask-image:radial-gradient(ellipse at 50% 0%,black 30%,transparent 78%);mask-image:radial-gradient(ellipse at 50% 0%,black 30%,transparent 78%)}
+@keyframes gridmove{to{background-position:0 44px}}
+.scanlines{position:fixed;inset:0;z-index:40;pointer-events:none;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.028) 0 1px,transparent 1px 3px)}
+.wrap{position:relative;z-index:1;max-width:920px;margin:0 auto;padding:26px 20px 60px}
+/* ==== Boot ==== */
+#boot{position:fixed;inset:0;z-index:60;background:var(--bg);display:grid;place-items:center;transition:opacity .7s;cursor:pointer}
+#boot.done{opacity:0;pointer-events:none}
+#boot .inner{width:min(560px,88vw)}
+#bootText{font-family:ui-monospace,Consolas,'Sarasa Mono SC',monospace;color:var(--cyan);font-size:.82rem;line-height:2;text-shadow:0 0 10px rgba(0,240,255,.5);white-space:pre-wrap;min-height:12em}
+.bootbar{width:100%;height:4px;background:rgba(0,240,255,.15);border-radius:99px;margin-top:16px;overflow:hidden}
+.bootbar i{display:block;height:100%;width:0;background:var(--cyan);box-shadow:0 0 12px var(--cyan);transition:width .3s}
+/* ==== Header ==== */
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-family:Orbitron;font-weight:700;letter-spacing:.2em;color:var(--cyan);text-shadow:0 0 18px rgba(0,240,255,.6);font-size:1rem}
+.logo span{color:var(--mag);text-shadow:0 0 18px rgba(255,45,120,.6)}
+.clock{text-align:right;font-family:Orbitron;color:var(--dim);font-size:.66rem;letter-spacing:.14em}
+.clock b{display:block;color:var(--text);font-size:.98rem;font-weight:600;text-shadow:0 0 12px rgba(0,240,255,.4);margin-bottom:2px}
+/* ==== Ticker ==== */
+.ticker{margin-top:18px;border:1px solid rgba(255,176,32,.35);border-radius:10px;background:rgba(255,176,32,.05);overflow:hidden;white-space:nowrap}
+.ticker span{display:inline-block;padding:8px 0;color:var(--amber);font-size:.72rem;letter-spacing:.05em;animation:tickmove 30s linear infinite}
+@keyframes tickmove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* ==== Hero ==== */
+.chip{display:inline-block;border:1px solid var(--line);color:var(--cyan);font-size:.62rem;letter-spacing:.24em;padding:6px 13px;border-radius:999px;background:rgba(0,240,255,.06);margin-top:30px}
+h1{font-family:Orbitron;font-weight:900;font-size:clamp(1.85rem,5.4vw,3.35rem);line-height:1.14;letter-spacing:.02em;margin-top:16px}
+h1 .glow{color:var(--mag);text-shadow:0 0 8px rgba(255,45,120,.8),0 0 30px rgba(255,45,120,.45),0 0 70px rgba(255,45,120,.25)}
+.sub{color:var(--dim);margin-top:14px;max-width:660px;line-height:1.7;font-size:.94rem}
+/* ==== Kartu ringkasan ==== */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:30px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;backdrop-filter:blur(6px)}
+.card small{display:block;color:var(--dim);font-size:.58rem;letter-spacing:.22em;margin-bottom:7px}
+.card b{font-family:Orbitron;font-size:.95rem;color:var(--cyan);font-weight:600;line-height:1.4;display:block}
+.card.mag b{color:var(--mag)} .card.amb b{color:var(--amber)}
+.card i{font-style:normal;display:block;color:var(--dim);font-size:.72rem;margin-top:7px}
+/* ==== Panel navigasi ==== */
+.navpanel{margin-top:22px;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:inset 0 0 40px rgba(0,240,255,.07),0 0 30px rgba(0,240,255,.06);backdrop-filter:blur(6px)}
+.dest label{font-size:.58rem;letter-spacing:.28em;color:var(--dim)}
+.dest-row{display:flex;align-items:baseline;gap:10px;margin-top:9px;flex-wrap:wrap}
+.dest-row .pin{color:var(--mag);font-size:1.1rem}
+.dest-row b{font-family:Orbitron;font-size:1.25rem;letter-spacing:.06em}
+.dest-row small{color:var(--dim);font-size:.74rem}
+.via{color:var(--dim);font-size:.8rem;margin-top:7px;line-height:1.6}
+.statusline{margin-top:16px;font-size:.85rem;color:var(--cyan);min-height:1.3em}
+.progress{height:8px;border-radius:99px;background:rgba(0,240,255,.12);margin-top:10px;overflow:hidden}
+.progress i{display:block;height:100%;width:0%;border-radius:99px;background:linear-gradient(90deg,var(--cyan),var(--mag));transition:width .8s cubic-bezier(.2,.8,.2,1)}
+#startBtn{margin-top:16px;width:100%;padding:15px;font-family:Orbitron;font-weight:700;letter-spacing:.28em;font-size:.85rem;color:#021018;background:linear-gradient(90deg,var(--cyan),#4df0c0);border:0;border-radius:12px;cursor:pointer;box-shadow:0 0 24px rgba(0,240,255,.35);transition:.25s}
+#startBtn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 0 44px rgba(0,240,255,.55)}
+#startBtn:disabled{opacity:.6;cursor:default}
+.voice{margin-top:15px;border-left:3px solid var(--mag);padding:11px 14px;background:rgba(255,45,120,.07);border-radius:0 10px 10px 0;color:#ffd7e6;font-size:.86rem;font-style:italic;line-height:1.6;min-height:2.6em}
+/* ==== Peringatan sistem ==== */
+.sec-label{font-family:Orbitron;font-size:.64rem;letter-spacing:.28em;color:var(--dim);margin-top:30px}
+.alerts{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:12px}
+.alert{background:rgba(255,176,32,.06);border:1px solid rgba(255,176,32,.35);border-radius:14px;padding:14px 16px}
+.alert b{display:flex;align-items:center;gap:9px;font-family:Orbitron;font-size:.64rem;letter-spacing:.2em;color:var(--amber);margin-bottom:7px}
+.alert b::before{content:"!";display:inline-grid;place-items:center;width:16px;height:16px;border:1px solid var(--amber);border-radius:50%;font-size:.6rem;flex:0 0 16px}
+.alert p{color:var(--dim);font-size:.8rem;line-height:1.65}
+/* ==== Langkah rute ==== */
+.steps{display:none;margin-top:12px;flex-direction:column;gap:10px}
+.steps.live{display:flex}
+.step{display:flex;gap:14px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;opacity:0;transform:translateY(14px);transition:opacity .6s,transform .6s;backdrop-filter:blur(6px)}
+.step.show{opacity:1;transform:none}
+.step .n{flex:0 0 34px;height:34px;border-radius:50%;display:grid;place-items:center;font-family:Orbitron;font-weight:700;font-size:.78rem;color:var(--cyan);border:1px solid var(--line);background:rgba(0,240,255,.08)}
+.step.final .n{color:var(--mag);border-color:rgba(255,45,120,.4);background:rgba(255,45,120,.08)}
+.step p{font-size:.9rem;line-height:1.6}
+.step p b{color:var(--cyan)}
+.step.final p b{color:var(--mag)}
+.step .d{margin-left:auto;flex:0 0 auto;color:var(--dim);font-size:.66rem;font-family:Orbitron;letter-spacing:.08em;padding-top:4px}
+/* ==== Tiba ==== */
+.arrive{margin-top:24px;text-align:center;border:1px dashed rgba(255,45,120,.5);border-radius:18px;padding:28px 22px;background:rgba(255,45,120,.05)}
+.arrive h2{font-family:Orbitron;color:var(--mag);letter-spacing:.14em;font-size:1.2rem;text-shadow:0 0 20px rgba(255,45,120,.5)}
+.arrive p{color:var(--dim);margin:11px auto 18px;max-width:540px;font-size:.9rem;line-height:1.7}
+#recalcBtn{padding:13px 22px;font-family:Orbitron;font-weight:600;letter-spacing:.2em;font-size:.72rem;color:var(--amber);background:rgba(255,176,32,.08);border:1px solid rgba(255,176,32,.5);border-radius:10px;cursor:pointer;transition:.25s}
+#recalcBtn:hover:not(:disabled){background:rgba(255,176,32,.18);box-shadow:0 0 24px rgba(255,176,32,.3)}
+#recalcBtn:disabled{opacity:.55;cursor:default}
+/* ==== Recalc log ==== */
+.recalc{margin-top:16px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.recalc div{color:var(--green);font-family:ui-monospace,Consolas,monospace;font-size:.8rem;line-height:1.9;opacity:0;transform:translateX(-8px);transition:opacity .5s,transform .5s}
+.recalc div.show{opacity:1;transform:none}
+/* ==== Rute alternatif ==== */
+.alt{margin-top:20px;border:1px solid rgba(43,255,158,.35);background:rgba(43,255,158,.06);border-radius:18px;padding:24px 22px}
+.alt h2{font-family:Orbitron;color:var(--green);font-size:1.02rem;letter-spacing:.14em}
+.alt h3{font-family:Orbitron;color:var(--text);font-size:1.25rem;margin-top:8px;letter-spacing:.04em}
+.alt .note{color:var(--dim);font-size:.84rem;margin-top:10px;line-height:1.65}
+.specs{margin-top:14px}
+.spec{display:flex;justify-content:space-between;gap:14px;border-bottom:1px dashed rgba(43,255,158,.25);padding:9px 0;font-size:.85rem;flex-wrap:wrap}
+.spec:last-child{border-bottom:0}
+.spec span{color:var(--dim);letter-spacing:.14em;font-size:.62rem;font-family:Orbitron;padding-top:3px}
+.spec b{text-align:right;font-weight:600}
+#applyBtn{margin-top:16px;padding:13px 22px;font-family:Orbitron;font-weight:700;letter-spacing:.22em;font-size:.74rem;color:#04150c;background:linear-gradient(90deg,var(--green),#8affce);border:0;border-radius:10px;cursor:pointer;box-shadow:0 0 22px rgba(43,255,158,.35);transition:.25s}
+#applyBtn:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(43,255,158,.55)}
+/* ==== Good path ==== */
+.goodpath{margin-top:20px;text-align:center;border:1px solid rgba(11,143,99,.45);background:rgba(11,143,99,.08);border-radius:18px;padding:30px 24px}
+.goodpath h2{font-family:Orbitron;color:#0b8f63;letter-spacing:.14em;font-size:1.1rem}
+.goodpath p{color:var(--dim);margin:12px auto 0;max-width:560px;font-size:.9rem;line-height:1.75}
+#revertBtn{margin-top:18px;padding:11px 18px;font-family:Orbitron;font-size:.64rem;letter-spacing:.2em;color:var(--dim);background:transparent;border:1px solid var(--line);border-radius:10px;cursor:pointer}
+#revertBtn:hover{color:var(--text);border-color:var(--text)}
+/* ==== Footer ==== */
+footer{margin-top:44px;color:var(--dim);font-size:.72rem;line-height:1.8;border-top:1px solid var(--line);padding-top:16px;letter-spacing:.03em}
+.hidden{display:none}
+/* ==== Mode terang (Jalan Kebenaran) ==== */
+body.light{--bg:#eef6f0;--panel:rgba(255,255,255,.85);--line:rgba(11,143,99,.3);--cyan:#0b8f63;--mag:#0b8f63;--amber:#b3730a;--green:#0b8f63;--text:#0d241a;--dim:#4c6b5b}
+body.light .grid-bg{background-image:linear-gradient(rgba(11,143,99,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(11,143,99,.1) 1px,transparent 1px);animation:none}
+body.light .scanlines{display:none}
+body.light h1 .glow{color:#0b8f63;text-shadow:0 0 20px rgba(11,143,99,.25)}
+body.light .logo,body.light .clock b{text-shadow:none}
+body.light #startBtn{background:linear-gradient(90deg,#0b8f63,#27c48b);color:#fff;box-shadow:0 0 20px rgba(11,143,99,.3)}
+body.light .voice{color:#0d241a;background:rgba(11,143,99,.08)}
+body.light .arrive{border-color:rgba(11,143,99,.5);background:rgba(11,143,99,.07)}
+body.light .arrive h2{text-shadow:none}
+@media (max-width:560px){
+  .step .d{display:none}
+  .clock{display:none}
+  .spec b{text-align:left}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .steps{display:flex}
+  .step{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Layar boot -->
+<div id="boot">
+  <div class="inner">
+    <pre id="bootText"></pre>
+    <div class="bootbar"><i id="bootBar"></i></div>
+  </div>
+</div>
+
+<div class="grid-bg"></div>
+<div class="scanlines"></div>
+
+<div class="wrap">
+
+  <header>
+    <div class="logo">◈ NAVIGATOR <span>3026</span></div>
+    <div class="clock"><b id="clockTime">--:--:--</b><span id="clockDate">memuat waktu...</span></div>
+  </header>
+
+  <div class="ticker"><span>INFO LALU LINTAS TAHUN 3026: Jalan Kebenaran macet sejak 2026 — dipercaya masih macet sampai sekarang &nbsp;•&nbsp; Tol Alasan gratis bagi yang tak pernah merasa salah &nbsp;•&nbsp; Kamera di Persimpangan Aib direbut warga, dianggap memalukan &nbsp;•&nbsp; Hari ini aman, besok juga aman — kata semua orang &nbsp;•&nbsp; INFO LALU LINTAS TAHUN 3026: Jalan Kebenaran macet sejak 2026 — dipercaya masih macet sampai sekarang &nbsp;•&nbsp; Tol Alasan gratis bagi yang tak pernah merasa salah &nbsp;•&nbsp; Kamera di Persimpangan Aib direbut warga, dianggap memalukan &nbsp;•&nbsp; Hari ini aman, besok juga aman — kata semua orang &nbsp;•&nbsp;</span></div>
+
+  <section class="hero">
+    <span class="chip">SATIR FIKSI · EDISI MILLENIUM · 1000 TAHUN LAGI</span>
+    <h1>PETUNJUK ARAH<br><span class="glow">MENUJU KESESATAN</span></h1>
+    <p class="sub">Sistem navigasi resmi generasi ke-42. Terakhir diperbarui 1.000 tahun yang lalu — tidak ada yang merasa perlu. Karena jalan menuju kejatuhan selalu beraspal mulus, lampunya terang, dan rambunya ramah: «santai dulu, nanti juga sampai.»</p>
+  </section>
+
+  <section class="cards">
+    <div class="card"><small>JARAK TEMPUH</small><b>1.000 Tahun Cahaya</b><i>diukur dari niat yang tak pernah jalan</i></div>
+    <div class="card mag"><small>PERKIRAAN TIBA</small><b>14 Okt 3026 · 14:00</b><i>tepat waktu. Sayangnya.</i></div>
+    <div class="card amb"><small>KECEPATAN RATA-RATA</small><b>3 langkah mundur/detik</b><i>stabil. konsisten. menyedihkan.</i></div>
+    <div class="card"><small>LALU LINTAS</small><b>Lancar</b><i>tidak ada yang berhenti untuk berpikir</i></div>
+  </section>
+
+  <section class="navpanel">
+    <div class="dest">
+      <label>TUJUAN</label>
+      <div class="dest-row"><span class="pin">◉</span><b>KOTA KESESATAN</b><small>Zona Timur · Tahun 3026</small></div>
+      <p class="via">via Jalan Prokrastinasi dan Tol Alasan — rute tercepat yang ditemukan (sayangnya).</p>
+    </div>
+    <p class="statusline" id="statusline">Rute siap. Tekan tombol di bawah — dan coba jangan menyesal.</p>
+    <div class="progress"><i id="progressBar"></i></div>
+    <button id="startBtn">MULAI NAVIGASI</button>
+    <p class="voice" id="voice">"Selamat datang di Navigasi Kesesatan. Perjalanan akan lancar... terlalu lancar."</p>
+  </section>
+
+  <p class="sec-label">PERINGATAN SISTEM</p>
+  <section class="alerts">
+    <div class="alert"><b>RADAR</b><p>Suara Hati terdeteksi 2 km di depan. Disarankan menambah volume musik agar tidak terdengar.</p></div>
+    <div class="alert"><b>KAMERA</b><p>Merekam setiap kali Anda mengucap «besok-besok juga bisa». Total rekaman: 1.000 tahun penuh.</p></div>
+    <div class="alert"><b>REKAYASA LALU LINTAS</b><p>Semua rute pulang ditutup sejak 2926. Alasan resmi: «capek».</p></div>
+    <div class="alert"><b>SINYAL</b><p>Niat baik tidak terdeteksi di wilayah ini sejak 1.000 tahun lalu. Petugas sedang mencari — katanya.</p></div>
+  </section>
+
+  <section class="steps" id="steps">
+    <p class="sec-label">RUTE UTAMA — 10 LANGKAH MENUJU KESESATAN</p>
+    <div class="step"><span class="n">01</span><p>Mulai dari <b>Hari Ini</b> — hadap ke arah masa depan, tapi jangan bergerak dulu. Santai. Semua orang di rute ini melakukannya.</p><span class="d">100 m</span></div>
+    <div class="step"><span class="n">02</span><p>Belok kiri ke <b>Jalan Prokrastinasi</b> — arahnya diketahui semua orang, tapi tak pernah ada yang selesai melewatinya.</p><span class="d">7 tahun</span></div>
+    <div class="step"><span class="n">03</span><p>Lurus terus di <b>Jalan Nanti Dulu</b> — waspadai lubang-lubang besar berlabel «Kerjaan Menumpuk».</p><span class="d">250 tahun</span></div>
+    <div class="step"><span class="n">04</span><p>Masuk <b>Persimpangan Aib</b> — ambil jalan yang paling ramai. Kalau ternyata salah, bilang saja sedang ikut tren.</p><span class="d">3 km</span></div>
+    <div class="step"><span class="n">05</span><p>Belok kanan ke <b>Gang Ah Tadi Juga Gitu</b> — di sini semua orang merasa paling benar. Semuanya. Tanpa kecuali.</p><span class="d">2 abad</span></div>
+    <div class="step"><span class="n">06</span><p>Lewati <b>Tol Alasan</b> — tarif: satu pembenaran per kilometer. Saldo e-toll Anda: ego.</p><span class="d">400 tahun</span></div>
+    <div class="step"><span class="n">07</span><p>Rest area <b>Warung Kopi Semalean</b> — rekomendasi resmi: ngopi sampai lupa tujuan. Wajib coba roti «Besok Lagi».</p><span class="d">istirahat 100 tahun</span></div>
+    <div class="step"><span class="n">08</span><p>Lanjutkan di <b>Jalan Lebih Tahu Sendiri</b> — dilarang menanyakan arah; warga setempat alergi nasihat.</p><span class="d">200 tahun</span></div>
+    <div class="step"><span class="n">09</span><p>Perjalanan terakhir: <b>Jalan Tikus Menuju Enaknya Dulu</b> — sempit, gelap, sepi. Sedikit yang sadar sudah masuk ke sini.</p><span class="d">47 tahun</span></div>
+    <div class="step final"><span class="n">10</span><p>Tujuan ada di sebelah kiri Anda: <b>KOTA KESESATAN, TAHUN 3026</b>. Anda telah tiba. Selamat... seharusnya.</p><span class="d">0 m</span></div>
+  </section>
+
+  <section class="arrive hidden" id="arrive">
+    <h2>◉ ANDA TELAH TIBA</h2>
+    <p>Kota Kesesatan, 14 Oktober 3026 — pukul 14:00 tepat. Perjalanan yang lancar, tanpa hambatan, tanpa perenungan. Sesuai rencana. Maaf, maksudnya: sesuai dugaan.</p>
+    <button id="recalcBtn">HITUNG ULANG RUTE PULANG</button>
+  </section>
+
+  <section class="recalc hidden" id="recalc"></section>
+
+  <section class="alt hidden" id="alt">
+    <h2>RUTE ALTERNATIF DITEMUKAN</h2>
+    <h3>Jalan Kebenaran</h3>
+    <p class="note">Rute tersembunyi di bawah aspal Tol Alasan. Hampir tak terpakai selama 1.000 tahun — makanya masih mulus di dalam hati.</p>
+    <div class="specs">
+      <div class="spec"><span>JARAK</span><b>seumur hidup</b></div>
+      <div class="spec"><span>KONDISI</span><b>menanjak, penuh perbaikan diri, macet setiap saat</b></div>
+      <div class="spec"><span>SINYAL SUARA HATI</span><b>penuh bar</b></div>
+      <div class="spec"><span>LALU LINTAS</span><b>sepi — hanya sedikit yang lewat</b></div>
+      <div class="spec"><span>PERKIRAAN TIBA</span><b>tidak tertera. yang jelas: sampai.</b></div>
+    </div>
+    <button id="applyBtn">TERAPKAN RUTE INI</button>
+  </section>
+
+  <section class="goodpath hidden" id="goodpath">
+    <h2>RUTE DITERAPKAN: JALAN KEBENARAN</h2>
+    <p>Selamat jalan, penumpang. Kecepatan: pelan tapi pasti. Sinyal suara hati: penuh. Lalu lintas: macet setiap saat — bagus, itu tanda Anda tidak sendirian yang berhenti untuk berpikir.</p>
+    <p>Perkiraan tiba tidak tertera. Yang jelas: sampai.</p>
+    <button id="revertBtn">KEMBALI KE TAHUN 3026</button>
+  </section>
+
+  <footer>
+    CATATAN: Halaman ini adalah satir fiksi — bukan petunjuk navigasi sungguhan. Tahun 3026 belum terjadi, Kota Kesesatan tidak ada, dan semua nama jalan hanyalah karangan. Bila ada yang merasa tersindir, itu bukan maksudnya. Kecuali memang terasa.<br>
+    Ditulis tahun 2026 — 1.000 tahun sebelum jadwal. · NAVIGATOR v3026.10.17 · Semua jalan yang lancar belum tentu arah yang benar.
+  </footer>
+
+<script>
+(function(){
+  'use strict';
+  var $ = function(id){ return document.getElementById(id); };
+
+  /* ===== Jam: waktu saat ini + 1000 tahun ===== */
+  var fmtD = new Intl.DateTimeFormat('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  var fmtT = new Intl.DateTimeFormat('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  function tick(){
+    var now = new Date();
+    now.setFullYear(now.getFullYear()+1000);
+    $('clockDate').textContent = fmtD.format(now);
+    $('clockTime').textContent = fmtT.format(now) + ' · +1000 THN';
+  }
+  tick();
+  setInterval(tick,1000);
+
+  /* ===== Layar boot ===== */
+  var bootLines = [
+    '> SISTEM NAVIGASI NUSANTARA — v3026.10.17',
+    '> Menghubungkan ke satelit .......... OK',
+    '> Menyinkronkan waktu: +1000 tahun ... OK',
+    '> Memuat peta Bumi tahun 3026 ....... OK',
+    '> Mencari rute menuju Kesesatan ......',
+    '> Rute ditemukan. Yang paling lancar, tentu saja.'
+  ];
+  var boot = $('boot'), pre = $('bootText'), bootBar = $('bootBar');
+  var li = 0, ci = 0, txt = '';
+  var bt = setInterval(function(){
+    if(li >= bootLines.length){
+      clearInterval(bt);
+      setTimeout(function(){ boot.classList.add('done'); }, 550);
+      return;
+    }
+    var line = bootLines[li];
+    txt += line.charAt(ci);
+    ci++;
+    if(ci >= line.length){ txt += '\n'; li++; ci = 0; }
+    pre.textContent = txt;
+    bootBar.style.width = Math.min(100, ((li + (line.length ? ci/line.length : 0)) / bootLines.length) * 100) + '%';
+  }, 16);
+  boot.addEventListener('click', function(){ boot.classList.add('done'); });
+
+  /* ===== Navigasi langkah demi langkah ===== */
+  var voices = [
+    'Dalam seratus meter, hadap ke masa depan. Jangan gerak dulu — khas pelanggan setia kami.',
+    'Belok kiri ke Jalan Prokrastinasi. Waktu tempuh: tujuh tahun. Atau selamanya.',
+    'Lurus terus di Jalan Nanti Dulu. Waspadai lubang: «Kerjaan Menumpuk».',
+    'Masuk Persimpangan Aib. Ambil jalan paling ramai — kalau salah, bilang saja lagi ikut tren.',
+    'Belok kanan ke Gang Ah Tadi Juga Gitu. Di sini semua orang benar. Semuanya.',
+    'Masuk Tol Alasan. Siapkan pembenaran — tarif naik setiap tahun. Saldo Anda: ego.',
+    'Rest area Warung Kopi Semalean. Rekomendasi resmi: ngopi sampai lupa tujuan.',
+    'Lanjut Jalan Lebih Tahu Sendiri. Dilarang bertanya arah — warga setempat alergi nasihat.',
+    'Jalan Tikus Menuju Enaknya Dulu. Sempit, gelap, sepi. Sedikit yang sadar sudah masuk sini.',
+    'Anda telah tiba: Kota Kesesatan. Perjalanan lancar tanpa hambatan — memang begitu ciri-cirinya.'
+  ];
+  var started = false;
+  $('startBtn').addEventListener('click', function(){
+    if(started) return;
+    started = true;
+    var btn = $('startBtn'), status = $('statusline'), voice = $('voice');
+    var stepsEl = $('steps'), steps = stepsEl.querySelectorAll('.step');
+    var barP = $('progressBar');
+    btn.disabled = true;
+    btn.textContent = 'NAVIGASI BERJALAN';
+    status.textContent = 'Menghitung rute...';
+    stepsEl.classList.add('live');
+    setTimeout(function(){
+      status.textContent = 'Rute ditemukan... sayangnya.';
+      var i = 0;
+      var iv = setInterval(function(){
+        if(i >= steps.length){
+          clearInterval(iv);
+          status.textContent = 'Perjalanan selesai. Terima kasih telah memilih jalan pintas.';
+          btn.textContent = 'ANDA TELAH TIBA';
+          $('arrive').classList.remove('hidden');
+          setTimeout(function(){ $('arrive').scrollIntoView({behavior:'smooth', block:'center'}); }, 250);
+          return;
+        }
+        steps[i].classList.add('show');
+        voice.textContent = '"' + voices[i] + '"';
+        barP.style.width = ((i + 1) / steps.length * 100) + '%';
+        i++;
+      }, 1000);
+    }, 1000);
+  });
+
+  /* ===== Hitung ulang rute pulang ===== */
+  var recalcLines = [
+    '> Menghitung ulang rute...',
+    '> Mencari: «jalan kembali ke jalan yang benar»...',
+    '> Memindai 1.000 tahun jalan setapak...',
+    '> Hasil: rute tidak ditemukan. Tidak ada warga yang pernah menempuhnya untuk mengecek.',
+    '> Menunggu... satu rute tersembunyi terdeteksi di bawah aspal Tol Alasan.'
+  ];
+  var recalculated = false;
+  $('recalcBtn').addEventListener('click', function(){
+    if(recalculated) return;
+    recalculated = true;
+    $('recalcBtn').disabled = true;
+    var box = $('recalc');
+    box.classList.remove('hidden');
+    recalcLines.forEach(function(s, idx){
+      setTimeout(function(){
+        var d = document.createElement('div');
+        d.textContent = s;
+        box.appendChild(d);
+        requestAnimationFrame(function(){ d.classList.add('show'); });
+        if(idx === recalcLines.length - 1){
+          setTimeout(function(){
+            $('alt').classList.remove('hidden');
+            $('alt').scrollIntoView({behavior:'smooth', block:'center'});
+          }, 900);
+        }
+      }, idx * 750 + 300);
+    });
+  });
+
+  /* ===== Rute alternatif: Jalan Kebenaran ===== */
+  $('applyBtn').addEventListener('click', function(){
+    document.body.classList.add('light');
+    $('alt').classList.add('hidden');
+    $('goodpath').classList.remove('hidden');
+    setTimeout(function(){ $('goodpath').scrollIntoView({behavior:'smooth', block:'center'}); }, 200);
+  });
+  $('revertBtn').addEventListener('click', function(){
+    document.body.classList.remove('light');
+    $('goodpath').classList.add('hidden');
+    $('alt').classList.remove('hidden');
+  });
+})();
+</script>
+
+
+</div>
+</body>
+</html>
